@@ -101,10 +101,25 @@ describe('Calculator', () => {
    operator_equals.simulate('click')
    const runningTotal = container.find('#running-total')
    expect(runningTotal.text()).toEqual('6')
+  })
 
-})
-
-
+   it('clear shouldn\'t affect the running total', () => {
+    const runningTotal = container.find('#running-total');
+    const button8 = container.find('#number8');
+    const button5 = container.find('#number5');
+    const button3 = container.find('#number3');
+    const subtractButton = container.find('#operator-subtract');
+    const equals = container.find('#operator-equals');
+    const clear = container.find('#clear');
+    button8.simulate('click');
+    subtractButton.simulate('click');
+    button3.simulate('click');
+    subtractButton.simulate('click');
+    button3.simulate('click');
+    clear.simulate('click');
+    equals.simulate('click');
+    expect(runningTotal.text()).toEqual('5');
+  }) 
 
 })
 
